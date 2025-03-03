@@ -13,51 +13,58 @@
             min-height: 100vh;
             padding: 20px;
         }
+
         .a4-container {
-            width: 210mm;
-            height: 297mm;
+            width: 100%;
+            max-width: 210mm;
+            aspect-ratio: 210 / 297; /* Maintain A4 ratio */
             background: white;
             padding: 20mm;
             box-shadow: 0 0 10px rgba(0,0,0,0.2);
             overflow: auto;
             font-family: "Times New Roman", serif;
             line-height: 1.5;
-            font-size: 20px; /* Increased text size for better readability */
+            font-size: 18px; /* Adjusted for readability */
         }
+
         h1 {
             text-align: center;
             font-weight: bold;
         }
+
         .form-group {
             margin-bottom: 15px;
         }
+
         label {
             font-weight: bold;
         }
+
         input[type="text"], input[type="email"] {
-            width: 50%;
+            width: 100%; /* Full width for responsiveness */
             padding: 8px;
             margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+
         button {
             margin-top: 20px;
             padding: 10px;
-            width: 35%;
+            width: 100%; /* Button scales properly on smaller screens */
             background: #28a745;
             color: white;
             border: none;
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
-            display: block; /* Display as a block element */
-            margin-left: auto; /* Center the button */
-            margin-right: auto; /* Center the button */
+            display: block;
         }
+
         button:hover {
             background: #218838;
         }
+
         #formMessage {
             margin-top: 20px;
             padding: 10px;
@@ -65,12 +72,14 @@
             font-size: 16px;
             display: none;
         }
+
         .success {
             background: #d4edda;
             color: #155724;
             border: 1px solid #c3e6cb;
             border-radius: 5px;
         }
+
         .error {
             background: #f8d7da;
             color: #721c24;
@@ -80,14 +89,14 @@
 
         .checkbox-container {
             display: flex;
-            align-items: flex-start; /* Aligns checkbox with the start of the text */
-            gap: 10px; /* Adds spacing between checkbox and text */
+            align-items: flex-start;
+            gap: 10px;
         }
 
         .checkbox-container input[type="checkbox"] {
             width: 20px;
-            height: 20px; /* Makes checkbox bigger */
-            margin-top: 3px; /* Aligns visually with text */
+            height: 20px;
+            margin-top: 3px;
         }
 
         .checkbox-text {
@@ -96,6 +105,23 @@
             font-style: italic;
         }
 
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .a4-container {
+                padding: 10mm;
+                font-size: 16px; /* Slightly smaller for mobile */
+            }
+
+            input[type="text"], input[type="email"] {
+                font-size: 16px;
+                padding: 6px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -105,18 +131,17 @@
 
         <form id="parentalDeclaration">
             <div class="form-group">
-                <br>
-                <label for="name"><strong>Full Name:</strong></label><br>
+                <label for="name"><strong>Full Name:</strong></label>
                 <input type="text" id="name" name="entry.423786364" required>
             </div>
 
             <div class="form-group">
-                <label for="email"><strong>Email Address:</strong></label><br>
+                <label for="email"><strong>Email Address:</strong></label>
                 <input type="email" id="email" name="entry.683084992" required>
             </div>
-            <br>
+
             <p>
-                If the Children’s Wellbeing and Schools Bill is enacted into law,I hereby affirm that <strong>I 
+                If the Children’s Wellbeing and Schools Bill is enacted into law, I hereby affirm that <strong>I 
                 will not permit any government interference in my children's education.</strong>
             </p>
 
@@ -134,7 +159,7 @@
                 threat to my fundamental right to educate my children in accordance with my religious 
                 beliefs and moral convictions.
             </p>
-            <br><br>
+
             <div class="form-group checkbox-container">
                 <input type="checkbox" id="agreeCheckbox" required>
                 <span class="checkbox-text">
@@ -148,7 +173,6 @@
             <button type="submit">Click here to Submit Declaration</button>
         </form>
 
-        <!-- Message Container -->
         <div id="formMessage"></div>
     </div>
 
@@ -176,7 +200,7 @@
                 formMessage.textContent = "Declaration submitted successfully!";
                 formMessage.className = "success";
                 formMessage.style.display = "block";
-                document.getElementById("parentalDeclaration").reset(); // Clear the form
+                document.getElementById("parentalDeclaration").reset();
             }).catch(error => {
                 formMessage.textContent = "Error submitting the declaration. Please try again.";
                 formMessage.className = "error";
