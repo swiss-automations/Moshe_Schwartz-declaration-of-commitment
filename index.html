@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Declaration of Parental Rights</title>
+    <style>
+        body {
+            background: #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .a4-container {
+            width: 210mm;
+            height: 297mm;
+            background: white;
+            padding: 20mm;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            overflow: auto;
+            font-family: "Times New Roman", serif;
+            line-height: 1.5;
+            font-size: 20px; /* Increased text size for better readability */
+        }
+        h1 {
+            text-align: center;
+            font-weight: bold;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"] {
+            width: 50%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            width: 35%;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            display: block; /* Display as a block element */
+            margin-left: auto; /* Center the button */
+            margin-right: auto; /* Center the button */
+        }
+        button:hover {
+            background: #218838;
+        }
+        #formMessage {
+            margin-top: 20px;
+            padding: 10px;
+            text-align: center;
+            font-size: 16px;
+            display: none;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start; /* Aligns checkbox with the start of the text */
+            gap: 10px; /* Adds spacing between checkbox and text */
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            width: 20px;
+            height: 20px; /* Makes checkbox bigger */
+            margin-top: 3px; /* Aligns visually with text */
+        }
+
+        .checkbox-text {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            font-style: italic;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="a4-container">
+        <h1>DECLARATION OF COMMITMENT</h1>
+
+        <form id="parentalDeclaration">
+            <div class="form-group">
+                <br>
+                <label for="name"><strong>Full Name:</strong></label><br>
+                <input type="text" id="name" name="entry.423786364" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email"><strong>Email Address:</strong></label><br>
+                <input type="email" id="email" name="entry.683084992" required>
+            </div>
+            <br>
+            <p>
+                If the Children’s Wellbeing and Schools Bill is enacted into law,I hereby affirm that <strong>I 
+                will not permit any government interference in my children's education.</strong>
+            </p>
+
+            <p>
+                As a parent, I possess both the inherent right and the solemn duty to determine the 
+                education and upbringing of my children. <strong>This fundamental right is inviolable, and 
+                I am steadfast in my commitment to uphold it, irrespective of any consequences.</strong>
+            </p>
+
+            <p>
+                As a law-abiding citizen, I acknowledge my duty to respect and adhere to the laws of 
+                the land in which I reside. However, when a law conflicts with the principles of the 
+                Bible and impedes my ability to fulfill my religious obligations, <strong>I am bound by faith 
+                and conscience to oppose its enforcement.</strong> The proposed legislation poses a direct 
+                threat to my fundamental right to educate my children in accordance with my religious 
+                beliefs and moral convictions.
+            </p>
+            <br><br>
+            <div class="form-group checkbox-container">
+                <input type="checkbox" id="agreeCheckbox" required>
+                <span class="checkbox-text">
+                    By checking this box, I formally acknowledge and affirm my commitment to this 
+                    declaration. In doing so, I stand in solidarity with thousands of other parents in 
+                    <strong>defending our legal rights, safeguarding our children’s future, and 
+                    upholding our shared values, traditions, and beliefs.</strong>
+                </span>
+            </div>
+
+            <button type="submit">Click here to Submit Declaration</button>
+        </form>
+
+        <!-- Message Container -->
+        <div id="formMessage"></div>
+    </div>
+
+    <script>
+        document.getElementById("parentalDeclaration").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const checkbox = document.getElementById("agreeCheckbox");
+            if (!checkbox.checked) {
+                const formMessage = document.getElementById("formMessage");
+                formMessage.textContent = "You must check the acknowledgment box before submitting.";
+                formMessage.className = "error";
+                formMessage.style.display = "block";
+                return;
+            }
+
+            const formData = new FormData(event.target);
+            const formMessage = document.getElementById("formMessage");
+
+            fetch("https://docs.google.com/forms/u/0/d/e/1FAIpQLSfVNhBf34oKB7e8FE99GUytPW4uvr9d-wBZfI-HQZLBzvKWfQ/formResponse", {
+                method: "POST",
+                body: formData,
+                mode: "no-cors"
+            }).then(() => {
+                formMessage.textContent = "Declaration submitted successfully!";
+                formMessage.className = "success";
+                formMessage.style.display = "block";
+                document.getElementById("parentalDeclaration").reset(); // Clear the form
+            }).catch(error => {
+                formMessage.textContent = "Error submitting the declaration. Please try again.";
+                formMessage.className = "error";
+                formMessage.style.display = "block";
+                console.error("Error:", error);
+            });
+        });
+    </script>
+
+</body>
+</html>
