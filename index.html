@@ -20,10 +20,11 @@
             background: white;
             padding: 20mm;
             box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            overflow: hidden; /* Hides scrollbar */
+            overflow: hidden;
             font-family: "Times New Roman", serif;
             line-height: 1.5;
             font-size: 18px;
+            border-radius: 5px;
         }
 
         h1 {
@@ -40,7 +41,7 @@
         }
 
         input[type="text"], input[type="email"] {
-            width: 100%;
+            width: 50%;
             padding: 8px;
             margin-top: 5px;
             border: 1px solid #ccc;
@@ -50,7 +51,7 @@
         button {
             margin-top: 20px;
             padding: 10px;
-            width: 100%;
+            width: 35%;
             background: #28a745;
             color: white;
             border: none;
@@ -58,6 +59,9 @@
             font-size: 16px;
             cursor: pointer;
             display: block;
+            margin-left: auto;  /* Center horizontally */
+            margin-right: auto; /* Center horizontally */
+            text-align: center;
         }
 
         button:hover {
@@ -93,8 +97,8 @@
         }
 
         .checkbox-container input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
+            width: 40px;
+            height: 40px;
             margin-top: 3px;
         }
 
@@ -107,13 +111,13 @@
         /* 📱 Mobile Adjustments */
         @media screen and (max-width: 768px) {
             .a4-container {
-                width: 90vw; /* Make it fill most of the screen */
+                width: 90vw;
                 padding: 10mm;
                 font-size: 16px;
-                box-shadow: none; /* More native feel */
-                border-radius: 10px; /* Slightly rounded edges */
-                height: auto; /* Allow natural height */
-                overflow: visible; /* Remove any scrollbar */
+                box-shadow: none;
+                border-radius: 10px;
+                height: auto;
+                overflow: visible;
             }
 
             input[type="text"], input[type="email"] {
@@ -132,15 +136,15 @@
 
     <div class="a4-container">
         <h1>DECLARATION OF COMMITMENT</h1>
-
+        <br>
         <form id="parentalDeclaration">
             <div class="form-group">
-                <label for="name"><strong>Full Name:</strong></label>
+                <label for="name"><strong>Full Name:</strong></label><br>
                 <input type="text" id="name" name="entry.423786364" required>
             </div>
 
             <div class="form-group">
-                <label for="email"><strong>Email Address:</strong></label>
+                <label for="email"><strong>Email Address:</strong></label><br>
                 <input type="email" id="email" name="entry.683084992" required>
             </div>
 
@@ -163,7 +167,7 @@
                 threat to my fundamental right to educate my children in accordance with my religious 
                 beliefs and moral convictions.
             </p>
-
+            <br>
             <div class="form-group checkbox-container">
                 <input type="checkbox" id="agreeCheckbox" required>
                 <span class="checkbox-text">
