@@ -17,14 +17,13 @@
         .a4-container {
             width: 100%;
             max-width: 210mm;
-            aspect-ratio: 210 / 297; /* Maintain A4 ratio */
             background: white;
             padding: 20mm;
             box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            overflow: auto;
+            overflow: hidden; /* Hides scrollbar */
             font-family: "Times New Roman", serif;
             line-height: 1.5;
-            font-size: 18px; /* Adjusted for readability */
+            font-size: 18px;
         }
 
         h1 {
@@ -41,7 +40,7 @@
         }
 
         input[type="text"], input[type="email"] {
-            width: 100%; /* Full width for responsiveness */
+            width: 100%;
             padding: 8px;
             margin-top: 5px;
             border: 1px solid #ccc;
@@ -51,7 +50,7 @@
         button {
             margin-top: 20px;
             padding: 10px;
-            width: 100%; /* Button scales properly on smaller screens */
+            width: 100%;
             background: #28a745;
             color: white;
             border: none;
@@ -105,11 +104,16 @@
             font-style: italic;
         }
 
-        /* Responsive Design */
+        /* 📱 Mobile Adjustments */
         @media screen and (max-width: 768px) {
             .a4-container {
+                width: 90vw; /* Make it fill most of the screen */
                 padding: 10mm;
-                font-size: 16px; /* Slightly smaller for mobile */
+                font-size: 16px;
+                box-shadow: none; /* More native feel */
+                border-radius: 10px; /* Slightly rounded edges */
+                height: auto; /* Allow natural height */
+                overflow: visible; /* Remove any scrollbar */
             }
 
             input[type="text"], input[type="email"] {
@@ -163,7 +167,7 @@
             <div class="form-group checkbox-container">
                 <input type="checkbox" id="agreeCheckbox" required>
                 <span class="checkbox-text">
-                    By clicking this box, I formally acknowledge and affirm my commitment to this 
+                    By checking this box, I formally acknowledge and affirm my commitment to this 
                     declaration. In doing so, I stand in solidarity with thousands of other parents in 
                     <strong>defending our legal rights, safeguarding our children’s future, and 
                     upholding our shared values, traditions, and beliefs.</strong>
