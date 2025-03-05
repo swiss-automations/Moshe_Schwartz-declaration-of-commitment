@@ -178,10 +178,10 @@
                 </span>
             </div>
 
-            <div id="formMessage"></div> <!-- Confirmation message moved above the button -->
-
             <button type="submit">Click here to Submit Declaration</button>
         </form>
+
+        <div id="formMessage"></div>
     </div>
 
     <script>
@@ -197,6 +197,11 @@
                 return;
             }
 
+            // Disable the submit button immediately to prevent double submission
+            const submitButton = document.querySelector("button[type='submit']");
+            submitButton.disabled = true;
+            submitButton.textContent = "Submitting...";
+
             const formData = new FormData(event.target);
             const formMessage = document.getElementById("formMessage");
 
@@ -208,11 +213,22 @@
                 formMessage.textContent = "Declaration submitted successfully!";
                 formMessage.className = "success";
                 formMessage.style.display = "block";
+
+                // Clear the form
                 document.getElementById("parentalDeclaration").reset();
+
+                // Re-enable the submit button and reset text
+                submitButton.disabled = false;
+                submitButton.textContent = "Click here to Submit Declaration";
             }).catch(error => {
                 formMessage.textContent = "Error submitting the declaration. Please try again.";
                 formMessage.className = "error";
                 formMessage.style.display = "block";
+
+                // Re-enable the submit button and reset text
+                submitButton.disabled = false;
+                submitButton.textContent = "Click here to Submit Declaration";
+
                 console.error("Error:", error);
             });
         });
