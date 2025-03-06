@@ -90,6 +90,14 @@
             border-radius: 5px;
         }
 
+        .bright-success {
+            background: #ff0000;
+            color: white;
+            border: 1px solid #ff0000;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
         .checkbox-container {
             display: flex;
             align-items: flex-start;
@@ -178,10 +186,10 @@
                 </span>
             </div>
 
+            <div id="formMessage"></div> <!-- Moved the formMessage above the submit button -->
+
             <button type="submit">Click here to Submit Declaration</button>
         </form>
-
-        <div id="formMessage"></div>
     </div>
 
     <script>
@@ -211,7 +219,7 @@
                 mode: "no-cors"
             }).then(() => {
                 formMessage.textContent = "Declaration submitted successfully!";
-                formMessage.className = "success";
+                formMessage.className = "bright-success"; // Updated class for bright red background
                 formMessage.style.display = "block";
 
                 // Clear the form
